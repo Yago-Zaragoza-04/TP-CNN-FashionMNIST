@@ -1,0 +1,2026 @@
+{
+  "dataset": {
+    "nombre": "Fashion-MNIST",
+    "autor": "Zalando Research",
+    "origen_usado": "Kaggle (carpeta archive/, archivos idx)",
+    "archivos_usados": [
+      "train-images-idx3-ubyte",
+      "train-labels-idx1-ubyte",
+      "t10k-images-idx3-ubyte",
+      "t10k-labels-idx1-ubyte"
+    ],
+    "md5_archivos_usados": {
+      "train-images-idx3-ubyte": "f4a8712d7a061bf5bd6d2ca38dc4d50a",
+      "train-labels-idx1-ubyte": "9018921c3c673c538a1fc5bad174d6f9",
+      "t10k-images-idx3-ubyte": "8181f5470baa50b63fa0f6fddb340f0a",
+      "t10k-labels-idx1-ubyte": "15d484375f8d13e6eb1aabb0c3f46965"
+    },
+    "carpeta_origen": "archive",
+    "motivo_formato": "formato por defecto: idx, idénticos a los del repositorio oficial (partición oficial); los CSV no reproducen la partición oficial (ver diagnostico_csv_vs_idx)",
+    "diagnostico_csv_vs_idx": {
+      "identicos": false,
+      "csv_train_imagenes_repetidas": 43,
+      "csv_test_imagenes_repetidas": 1,
+      "csv_train_en_train_oficial": 47259,
+      "csv_train_en_test_oficial": 7885,
+      "csv_train_ausentes_del_oficial": 4813,
+      "csv_test_en_test_oficial": 1291,
+      "csv_test_en_train_oficial": 7918,
+      "csv_test_ausentes_del_oficial": 790,
+      "imagenes_compartidas_csv_train_y_csv_test": 10
+    },
+    "url_kaggle": "https://www.kaggle.com/datasets/zalando-research/fashionmnist",
+    "url_repositorio_oficial": "https://github.com/zalandoresearch/fashion-mnist",
+    "licencia": "MIT",
+    "cita": "Xiao, H., Rasul, K. y Vollgraf, R. (2017). Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms. arXiv:1708.07747.",
+    "n_entrenamiento": 60000,
+    "n_prueba": 10000,
+    "n_total": 70000,
+    "forma_imagen": [
+      28,
+      28,
+      1
+    ],
+    "canales": 1,
+    "tipo_pixeles": "float32",
+    "rango_pixeles": [
+      0.0,
+      1.0
+    ],
+    "num_clases": 10,
+    "clases": {
+      "0": "Remera/top",
+      "1": "Pantalón",
+      "2": "Buzo",
+      "3": "Vestido",
+      "4": "Abrigo",
+      "5": "Sandalia",
+      "6": "Camisa",
+      "7": "Zapatilla",
+      "8": "Bolso",
+      "9": "Bota"
+    },
+    "clases_originales": {
+      "0": "T-Shirt/Top",
+      "1": "Trouser",
+      "2": "Pullover",
+      "3": "Dress",
+      "4": "Coat",
+      "5": "Sandals",
+      "6": "Shirt",
+      "7": "Sneaker",
+      "8": "Bag",
+      "9": "Ankle boots"
+    },
+    "fuente_clases_originales": "Xiao, Rasul y Vollgraf (2017), arXiv:1708.07747, Tabla 2",
+    "distribucion_entrenamiento": {
+      "Remera/top": 6000,
+      "Pantalón": 6000,
+      "Buzo": 6000,
+      "Vestido": 6000,
+      "Abrigo": 6000,
+      "Sandalia": 6000,
+      "Camisa": 6000,
+      "Zapatilla": 6000,
+      "Bolso": 6000,
+      "Bota": 6000
+    },
+    "distribucion_prueba": {
+      "Remera/top": 1000,
+      "Pantalón": 1000,
+      "Buzo": 1000,
+      "Vestido": 1000,
+      "Abrigo": 1000,
+      "Sandalia": 1000,
+      "Camisa": 1000,
+      "Zapatilla": 1000,
+      "Bolso": 1000,
+      "Bota": 1000
+    },
+    "preprocesamiento": [
+      "normalización de píxeles a [0, 1] (división por 255), tipo float32",
+      "reshape a (n, 28, 28, 1): un canal, escala de grises",
+      "etiquetas one-hot con to_categorical (10 clases)"
+    ],
+    "verificaciones": "OK",
+    "semilla": 42
+  },
+  "arquitectura": {
+    "nombre_modelo": "cnn_fashion_mnist",
+    "capas": [
+      {
+        "nombre": "entrada",
+        "tipo": "Input",
+        "forma_salida": [
+          28,
+          28,
+          1
+        ],
+        "parametros": 0,
+        "descripcion": "Imagen de 28×28 píxeles con un canal (escala de grises), normalizada a [0, 1]"
+      },
+      {
+        "nombre": "conv1_1",
+        "tipo": "Conv2D",
+        "forma_salida": [
+          28,
+          28,
+          32
+        ],
+        "parametros": 320,
+        "descripcion": "Convolución: 32 filtros (kernel) de 3×3, activación ReLU, padding 'same', conserva el tamaño",
+        "config": {
+          "filtros": 32,
+          "kernel": [
+            3,
+            3
+          ],
+          "padding": "same",
+          "activacion": "relu"
+        }
+      },
+      {
+        "nombre": "conv1_2",
+        "tipo": "Conv2D",
+        "forma_salida": [
+          26,
+          26,
+          32
+        ],
+        "parametros": 9248,
+        "descripcion": "Convolución: 32 filtros (kernel) de 3×3, activación ReLU, sin padding, reduce el borde",
+        "config": {
+          "filtros": 32,
+          "kernel": [
+            3,
+            3
+          ],
+          "padding": "valid",
+          "activacion": "relu"
+        }
+      },
+      {
+        "nombre": "pool1",
+        "tipo": "MaxPooling2D",
+        "forma_salida": [
+          13,
+          13,
+          32
+        ],
+        "parametros": 0,
+        "descripcion": "Agrupación máxima 2×2: conserva el valor máximo de cada grupo y reduce a la mitad alto y ancho",
+        "config": {
+          "pool": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "nombre": "drop1",
+        "tipo": "Dropout",
+        "forma_salida": [
+          13,
+          13,
+          32
+        ],
+        "parametros": 0,
+        "descripcion": "Dropout: descarta al azar el 25% de las activaciones durante el entrenamiento",
+        "config": {
+          "tasa": 0.25
+        }
+      },
+      {
+        "nombre": "conv2_1",
+        "tipo": "Conv2D",
+        "forma_salida": [
+          13,
+          13,
+          64
+        ],
+        "parametros": 18496,
+        "descripcion": "Convolución: 64 filtros (kernel) de 3×3, activación ReLU, padding 'same', conserva el tamaño",
+        "config": {
+          "filtros": 64,
+          "kernel": [
+            3,
+            3
+          ],
+          "padding": "same",
+          "activacion": "relu"
+        }
+      },
+      {
+        "nombre": "conv2_2",
+        "tipo": "Conv2D",
+        "forma_salida": [
+          11,
+          11,
+          64
+        ],
+        "parametros": 36928,
+        "descripcion": "Convolución: 64 filtros (kernel) de 3×3, activación ReLU, sin padding, reduce el borde",
+        "config": {
+          "filtros": 64,
+          "kernel": [
+            3,
+            3
+          ],
+          "padding": "valid",
+          "activacion": "relu"
+        }
+      },
+      {
+        "nombre": "pool2",
+        "tipo": "MaxPooling2D",
+        "forma_salida": [
+          5,
+          5,
+          64
+        ],
+        "parametros": 0,
+        "descripcion": "Agrupación máxima 2×2: conserva el valor máximo de cada grupo y reduce a la mitad alto y ancho",
+        "config": {
+          "pool": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "nombre": "drop2",
+        "tipo": "Dropout",
+        "forma_salida": [
+          5,
+          5,
+          64
+        ],
+        "parametros": 0,
+        "descripcion": "Dropout: descarta al azar el 25% de las activaciones durante el entrenamiento",
+        "config": {
+          "tasa": 0.25
+        }
+      },
+      {
+        "nombre": "flatten",
+        "tipo": "Flatten",
+        "forma_salida": [
+          1600
+        ],
+        "parametros": 0,
+        "descripcion": "Flatten: convierte los mapas de características en un vector 1D",
+        "config": {}
+      },
+      {
+        "nombre": "densa",
+        "tipo": "Dense",
+        "forma_salida": [
+          128
+        ],
+        "parametros": 204928,
+        "descripcion": "Capa totalmente conectada: 128 neuronas, activación ReLU",
+        "config": {
+          "unidades": 128,
+          "activacion": "relu"
+        }
+      },
+      {
+        "nombre": "drop3",
+        "tipo": "Dropout",
+        "forma_salida": [
+          128
+        ],
+        "parametros": 0,
+        "descripcion": "Dropout: descarta al azar el 50% de las activaciones durante el entrenamiento",
+        "config": {
+          "tasa": 0.5
+        }
+      },
+      {
+        "nombre": "salida",
+        "tipo": "Dense",
+        "forma_salida": [
+          10
+        ],
+        "parametros": 1290,
+        "descripcion": "Capa de salida totalmente conectada: 10 neuronas con softmax (probabilidad por clase)",
+        "config": {
+          "unidades": 10,
+          "activacion": "softmax"
+        }
+      }
+    ],
+    "total_parametros": 271210,
+    "parametros_entrenables": 271210,
+    "parametros_no_entrenables": 0,
+    "capa_con_mas_parametros": {
+      "nombre": "densa",
+      "parametros": 204928,
+      "porcentaje_del_total": 75.56
+    },
+    "parametros_por_tipo": {
+      "convolución": {
+        "parametros": 64992,
+        "porcentaje_del_total": 23.96
+      },
+      "pooling": {
+        "parametros": 0,
+        "porcentaje_del_total": 0.0
+      },
+      "dropout": {
+        "parametros": 0,
+        "porcentaje_del_total": 0.0
+      },
+      "flatten": {
+        "parametros": 0,
+        "porcentaje_del_total": 0.0
+      },
+      "densa": {
+        "parametros": 206218,
+        "porcentaje_del_total": 76.04
+      }
+    },
+    "compilacion": {
+      "optimizador": "adam",
+      "funcion_perdida": "categorical_crossentropy",
+      "metricas": [
+        "accuracy"
+      ]
+    },
+    "semilla": 42,
+    "verificacion_parametros": {
+      "conv1_1": {
+        "formula": "(kh·kw·canales_entrada + 1)·filtros",
+        "sustitucion": "(3·3·1 + 1)·32",
+        "calculado": 320,
+        "keras": 320,
+        "coincide": true
+      },
+      "densa": {
+        "formula": "(entradas + 1)·neuronas",
+        "sustitucion": "(1600 + 1)·128",
+        "calculado": 204928,
+        "keras": 204928,
+        "coincide": true
+      }
+    },
+    "prueba_forward": {
+      "lote": "primeras 8 imágenes del conjunto de prueba",
+      "forma_entrada": [
+        8,
+        28,
+        28,
+        1
+      ],
+      "forma_salida": [
+        8,
+        10
+      ],
+      "suma_por_fila": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "desvio_maximo_respecto_de_1": 1.1920928955078125e-07,
+      "ok": true,
+      "nota": "modelo sin entrenar: las probabilidades todavía no tienen significado"
+    }
+  },
+  "entrenamiento": {
+    "hiperparametros": {
+      "optimizador": "adam",
+      "learning_rate": 0.0010000000474974513,
+      "learning_rate_nota": "valor por defecto de Adam en Keras",
+      "funcion_perdida": "categorical_crossentropy",
+      "batch_size": 128,
+      "epocas_maximas": 50,
+      "early_stopping": {
+        "monitor": "val_loss",
+        "paciencia": 5,
+        "restore_best_weights": true
+      },
+      "shuffle": true
+    },
+    "particion": {
+      "metodo": "train_test_split estratificado (stratify=y_train, random_state=42) sobre el train oficial",
+      "n_entrenamiento": 54000,
+      "n_validacion": 6000,
+      "validacion_por_clase": {
+        "Remera/top": 600,
+        "Pantalón": 600,
+        "Buzo": 600,
+        "Vestido": 600,
+        "Abrigo": 600,
+        "Sandalia": 600,
+        "Camisa": 600,
+        "Zapatilla": 600,
+        "Bolso": 600,
+        "Bota": 600
+      },
+      "archivo_indices_validacion": "indices_validacion.npy",
+      "test_oficial": "no se usa en esta etapa (salvo una imagen para la figura 04)"
+    },
+    "pasos_por_epoca": 422,
+    "tamano_ultimo_lote": 112,
+    "epocas_ejecutadas": 26,
+    "corte_por_early_stopping": true,
+    "mejor_epoca": 21,
+    "en_mejor_epoca": {
+      "accuracy_entrenamiento": 0.9355185031890869,
+      "accuracy_validacion": 0.9403333067893982,
+      "loss_entrenamiento": 0.17196719348430634,
+      "loss_validacion": 0.1754167526960373
+    },
+    "nota_metricas_entrenamiento": "accuracy y loss de entrenamiento son el promedio de la época con dropout activo; las de validación se calculan al final de la época sin dropout",
+    "epocas_con_accuracy_train_mayor_que_val": [
+      22,
+      23,
+      25,
+      26
+    ],
+    "epocas_con_loss_train_menor_que_val": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "epocas_con_val_loss_peor_que_su_minimo_previo": [
+      16,
+      18,
+      19,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "verificacion_pesos_restaurados": {
+      "val_loss_mejor_epoca": 0.1754167526960373,
+      "val_loss_modelo_guardado": 0.1754167526960373,
+      "val_accuracy_modelo_guardado": 0.9403333067893982,
+      "coincide": true
+    },
+    "tiempo": {
+      "segundos_por_epoca": [
+        17.11,
+        16.49,
+        18.19,
+        17.99,
+        16.7,
+        16.71,
+        17.21,
+        18.77,
+        16.19,
+        15.75,
+        16.2,
+        17.01,
+        16.78,
+        15.97,
+        16.19,
+        15.72,
+        14.45,
+        15.46,
+        14.06,
+        14.98,
+        15.98,
+        15.19,
+        14.15,
+        14.42,
+        15.56,
+        13.95
+      ],
+      "promedio_s": 16.04,
+      "minimo_s": 13.95,
+      "maximo_s": 18.77,
+      "total_fit_s": 418.17,
+      "total_fit_min": 6.97
+    },
+    "hardware": {
+      "sistema_operativo": "Windows 11 (AMD64)",
+      "procesador": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+      "nucleos_fisicos": 10,
+      "nucleos_logicos": 20,
+      "ram_gb": 15.9,
+      "gpu": "sin GPU (TensorFlow ≥ 2.11 no soporta GPU en Windows nativo)",
+      "gpus_visibles_para_tensorflow": 0
+    },
+    "reproducibilidad": "semilla 42 con keras.utils.set_random_seed; sin op determinism: en CPU puede haber variaciones mínimas entre corridas",
+    "archivos": {
+      "mejor_checkpoint": "mejor_modelo.keras",
+      "modelo_final": "modelo_fashion_cnn.keras",
+      "log_csv": "entrenamiento_log.csv",
+      "historial": "historial.json"
+    },
+    "figura_04": {
+      "indice_test": 0,
+      "clase": "Bota",
+      "criterio": "primera imagen de la clase Bota en el conjunto de prueba",
+      "filtros_mostrados": {
+        "conv1_1": [
+          13,
+          14,
+          16,
+          18,
+          19,
+          25,
+          27,
+          29
+        ],
+        "conv2_2": [
+          1,
+          25,
+          29,
+          38,
+          47,
+          48,
+          51,
+          57
+        ]
+      },
+      "criterio_filtros": "los 8 filtros con mayor activación media para esa imagen"
+    },
+    "corrida_previa": {
+      "epocas_maximas": 20,
+      "paciencia": 3,
+      "epocas_ejecutadas": 20,
+      "mejor_epoca": 20,
+      "corte_por_early_stopping": false,
+      "en_mejor_epoca": {
+        "accuracy_entrenamiento": 0.935092568397522,
+        "accuracy_validacion": 0.9383333325386047,
+        "loss_entrenamiento": 0.17344863712787628,
+        "loss_validacion": 0.17782947421073914
+      },
+      "epocas_con_val_loss_peor_que_su_minimo_previo": [
+        16,
+        18,
+        19
+      ],
+      "val_loss_por_epoca": [
+        0.36762678623199463,
+        0.29931074380874634,
+        0.252088338136673,
+        0.2354739010334015,
+        0.22681915760040283,
+        0.21513153612613678,
+        0.2145208716392517,
+        0.2026500403881073,
+        0.20164988934993744,
+        0.1951410174369812,
+        0.19027766585350037,
+        0.18706616759300232,
+        0.18281427025794983,
+        0.18170666694641113,
+        0.18061159551143646,
+        0.18404033780097961,
+        0.1796092987060547,
+        0.18298842012882233,
+        0.18200114369392395,
+        0.17782947421073914
+      ],
+      "tiempo_total_min": 5.22,
+      "motivo_reentrenamiento": "la mejor época coincidía con el tope de épocas: el early stopping no llegó a actuar"
+    }
+  },
+  "mlp_referencia": {
+    "arquitectura": "Input(28,28,1) → Flatten → Dense(128, relu) → Dropout(0.5) → Dense(10, softmax)",
+    "parametros": 101770,
+    "epocas_ejecutadas": 33,
+    "mejor_epoca": 28,
+    "corte_por_early_stopping": true,
+    "val_accuracy_mejor_epoca": 0.8978333473205566,
+    "val_loss_mejor_epoca": 0.281374990940094,
+    "accuracy_test": 0.8823000192642212,
+    "loss_test": 0.3303897976875305,
+    "tiempo_total_s": 22.1,
+    "tiempo_promedio_por_epoca_s": 0.66,
+    "mismas_condiciones_que_la_cnn": {
+      "particion": "indices_validacion.npy",
+      "semilla": 42,
+      "batch_size": 128,
+      "optimizador": "adam",
+      "funcion_perdida": "categorical_crossentropy",
+      "epocas_maximas": 50,
+      "paciencia": 5
+    }
+  },
+  "validacion": {
+    "modelo_evaluado": "modelo_fashion_cnn.keras",
+    "global": {
+      "accuracy_test": 0.9305999875068665,
+      "loss_test": 0.20028471946716309,
+      "accuracy_validacion_mejor_epoca": 0.9403333067893982,
+      "loss_validacion_mejor_epoca": 0.1754167526960373,
+      "diferencia_accuracy_pp": -0.97,
+      "diferencia_loss": 0.0249,
+      "aciertos": 9306,
+      "errores": 694,
+      "n_test": 10000
+    },
+    "por_clase": {
+      "Remera/top": {
+        "precision": 0.8888888888888888,
+        "recall": 0.88,
+        "f1-score": 0.8844221105527639,
+        "support": 1000
+      },
+      "Pantalón": {
+        "precision": 0.9989868287740629,
+        "recall": 0.986,
+        "f1-score": 0.9924509310518369,
+        "support": 1000
+      },
+      "Buzo": {
+        "precision": 0.9242902208201893,
+        "recall": 0.879,
+        "f1-score": 0.9010763710917479,
+        "support": 1000
+      },
+      "Vestido": {
+        "precision": 0.9194499017681729,
+        "recall": 0.936,
+        "f1-score": 0.9276511397423192,
+        "support": 1000
+      },
+      "Abrigo": {
+        "precision": 0.8894373149062191,
+        "recall": 0.901,
+        "f1-score": 0.8951813214108296,
+        "support": 1000
+      },
+      "Sandalia": {
+        "precision": 0.9909365558912386,
+        "recall": 0.984,
+        "f1-score": 0.9874560963371801,
+        "support": 1000
+      },
+      "Camisa": {
+        "precision": 0.7751196172248804,
+        "recall": 0.81,
+        "f1-score": 0.7921760391198044,
+        "support": 1000
+      },
+      "Zapatilla": {
+        "precision": 0.95703125,
+        "recall": 0.98,
+        "f1-score": 0.9683794466403162,
+        "support": 1000
+      },
+      "Bolso": {
+        "precision": 0.9929577464788732,
+        "recall": 0.987,
+        "f1-score": 0.9899699097291875,
+        "support": 1000
+      },
+      "Bota": {
+        "precision": 0.9776649746192894,
+        "recall": 0.963,
+        "f1-score": 0.9702770780856423,
+        "support": 1000
+      }
+    },
+    "macro_avg": {
+      "precision": 0.9314763299371813,
+      "recall": 0.9305999999999999,
+      "f1-score": 0.9309040443761628,
+      "support": 10000.0
+    },
+    "weighted_avg": {
+      "precision": 0.9314763299371814,
+      "recall": 0.9306,
+      "f1-score": 0.9309040443761629,
+      "support": 10000.0
+    },
+    "accuracy": 0.9306,
+    "mejor_clase_f1": {
+      "clase": "Pantalón",
+      "f1": 0.9924509310518369
+    },
+    "peor_clase_f1": {
+      "clase": "Camisa",
+      "f1": 0.7921760391198044
+    },
+    "matriz_confusion": {
+      "etiquetas": [
+        "Remera/top",
+        "Pantalón",
+        "Buzo",
+        "Vestido",
+        "Abrigo",
+        "Sandalia",
+        "Camisa",
+        "Zapatilla",
+        "Bolso",
+        "Bota"
+      ],
+      "filas_real_columnas_predicha": [
+        [
+          880,
+          0,
+          13,
+          18,
+          3,
+          1,
+          83,
+          0,
+          2,
+          0
+        ],
+        [
+          2,
+          986,
+          0,
+          9,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          17,
+          0,
+          879,
+          10,
+          33,
+          0,
+          60,
+          0,
+          1,
+          0
+        ],
+        [
+          6,
+          0,
+          9,
+          936,
+          21,
+          0,
+          28,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          19,
+          18,
+          901,
+          0,
+          61,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          984,
+          0,
+          9,
+          0,
+          7
+        ],
+        [
+          82,
+          0,
+          29,
+          24,
+          52,
+          0,
+          810,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          980,
+          0,
+          15
+        ],
+        [
+          2,
+          1,
+          1,
+          3,
+          2,
+          1,
+          2,
+          1,
+          987,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          2,
+          0,
+          34,
+          0,
+          963
+        ]
+      ]
+    },
+    "pares_mas_confundidos": [
+      {
+        "real": "Remera/top",
+        "predicha": "Camisa",
+        "cantidad": 83
+      },
+      {
+        "real": "Camisa",
+        "predicha": "Remera/top",
+        "cantidad": 82
+      },
+      {
+        "real": "Abrigo",
+        "predicha": "Camisa",
+        "cantidad": 61
+      }
+    ],
+    "confusion_prendas_de_torso": {
+      "grupo": [
+        "Remera/top",
+        "Buzo",
+        "Abrigo",
+        "Camisa"
+      ],
+      "top3_dentro_del_grupo": [
+        true,
+        true,
+        true
+      ],
+      "errores_dentro_del_grupo": 453,
+      "errores_totales": 694,
+      "porcentaje_de_los_errores": 65.27
+    },
+    "ejemplos": {
+      "criterio": "2 imágenes por clase con np.random.default_rng(42) sobre los índices de cada clase",
+      "indices": [
+        881,
+        7868,
+        4476,
+        4519,
+        670,
+        6721,
+        1009,
+        5251,
+        7304,
+        7510,
+        5215,
+        7780,
+        4620,
+        8519,
+        1820,
+        3559,
+        6403,
+        7907,
+        5630,
+        8205
+      ],
+      "aciertos": 18,
+      "total": 20,
+      "aciertos_esperados_segun_accuracy_global": 18.61,
+      "detalle": [
+        {
+          "indice": 881,
+          "clase_real": "Remera/top",
+          "clase_predicha": "Remera/top",
+          "probabilidad_predicha": 0.8681063652038574,
+          "top2": [
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.8681063652038574
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.11849000304937363
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.8681063652038574
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.11849000304937363
+            },
+            {
+              "clase": "Bolso",
+              "probabilidad": 0.013167314231395721
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 7868,
+          "clase_real": "Remera/top",
+          "clase_predicha": "Remera/top",
+          "probabilidad_predicha": 0.9744994044303894,
+          "top2": [
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.9744994044303894
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.025356635451316833
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.9744994044303894
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.025356635451316833
+            },
+            {
+              "clase": "Vestido",
+              "probabilidad": 6.034587568137795e-05
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 4476,
+          "clase_real": "Pantalón",
+          "clase_predicha": "Pantalón",
+          "probabilidad_predicha": 0.999985933303833,
+          "top2": [
+            {
+              "clase": "Pantalón",
+              "probabilidad": 0.999985933303833
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 1.1959563380514737e-05
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Pantalón",
+              "probabilidad": 0.999985933303833
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 1.1959563380514737e-05
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 1.446587816644751e-06
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 4519,
+          "clase_real": "Pantalón",
+          "clase_predicha": "Pantalón",
+          "probabilidad_predicha": 1.0,
+          "top2": [
+            {
+              "clase": "Pantalón",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 3.752843522053517e-11
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Pantalón",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 3.752843522053517e-11
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 1.3147933262958045e-12
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 670,
+          "clase_real": "Buzo",
+          "clase_predicha": "Camisa",
+          "probabilidad_predicha": 0.46579885482788086,
+          "top2": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.46579885482788086
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.3318479359149933
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.46579885482788086
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.3318479359149933
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 0.19280759990215302
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 6721,
+          "clase_real": "Buzo",
+          "clase_predicha": "Camisa",
+          "probabilidad_predicha": 0.6146054863929749,
+          "top2": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.6146054863929749
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.2670341730117798
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.6146054863929749
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.2670341730117798
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 0.11835888028144836
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 1009,
+          "clase_real": "Vestido",
+          "clase_predicha": "Vestido",
+          "probabilidad_predicha": 0.9991483688354492,
+          "top2": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9991483688354492
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.0007721478468738496
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9991483688354492
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.0007721478468738496
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 7.077471673255786e-05
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 5251,
+          "clase_real": "Vestido",
+          "clase_predicha": "Vestido",
+          "probabilidad_predicha": 0.996772825717926,
+          "top2": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.996772825717926
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.002596803940832615
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.996772825717926
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.002596803940832615
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.0003100347239524126
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 7304,
+          "clase_real": "Abrigo",
+          "clase_predicha": "Abrigo",
+          "probabilidad_predicha": 0.999910831451416,
+          "top2": [
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.999910831451416
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 6.018349449732341e-05
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.999910831451416
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 6.018349449732341e-05
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 2.8925582228112034e-05
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 7510,
+          "clase_real": "Abrigo",
+          "clase_predicha": "Abrigo",
+          "probabilidad_predicha": 0.962684690952301,
+          "top2": [
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.962684690952301
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.03700299188494682
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.962684690952301
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.03700299188494682
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 0.0002938241814263165
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 5215,
+          "clase_real": "Sandalia",
+          "clase_predicha": "Sandalia",
+          "probabilidad_predicha": 1.0,
+          "top2": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 3.541884938552259e-13
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 3.541884938552259e-13
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 2.819286484497842e-15
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 7780,
+          "clase_real": "Sandalia",
+          "clase_predicha": "Sandalia",
+          "probabilidad_predicha": 1.0,
+          "top2": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 4.9518277932952826e-14
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 4.9518277932952826e-14
+            },
+            {
+              "clase": "Bolso",
+              "probabilidad": 4.77989840091432e-14
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 4620,
+          "clase_real": "Camisa",
+          "clase_predicha": "Camisa",
+          "probabilidad_predicha": 0.9981603026390076,
+          "top2": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.9981603026390076
+            },
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.001820502569898963
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.9981603026390076
+            },
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.001820502569898963
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 1.725017136777751e-05
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 8519,
+          "clase_real": "Camisa",
+          "clase_predicha": "Camisa",
+          "probabilidad_predicha": 0.9535109400749207,
+          "top2": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.9535109400749207
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 0.04342564567923546
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.9535109400749207
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 0.04342564567923546
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.003060002811253071
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 1820,
+          "clase_real": "Zapatilla",
+          "clase_predicha": "Zapatilla",
+          "probabilidad_predicha": 1.0,
+          "top2": [
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 4.170535472525216e-09
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 4.170535472525216e-09
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 1.9804148598812077e-10
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 3559,
+          "clase_real": "Zapatilla",
+          "clase_predicha": "Zapatilla",
+          "probabilidad_predicha": 0.9995259046554565,
+          "top2": [
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 0.9995259046554565
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 0.00046647575800307095
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 0.9995259046554565
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 0.00046647575800307095
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 7.352121883741347e-06
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 6403,
+          "clase_real": "Bolso",
+          "clase_predicha": "Bolso",
+          "probabilidad_predicha": 1.0,
+          "top2": [
+            {
+              "clase": "Bolso",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 2.7160360627220825e-09
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Bolso",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 2.7160360627220825e-09
+            },
+            {
+              "clase": "Vestido",
+              "probabilidad": 1.562754647910225e-10
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 7907,
+          "clase_real": "Bolso",
+          "clase_predicha": "Bolso",
+          "probabilidad_predicha": 1.0,
+          "top2": [
+            {
+              "clase": "Bolso",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 2.2661330277562453e-12
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Bolso",
+              "probabilidad": 1.0
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 2.2661330277562453e-12
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 3.5752937772292877e-16
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 5630,
+          "clase_real": "Bota",
+          "clase_predicha": "Bota",
+          "probabilidad_predicha": 0.9998519420623779,
+          "top2": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.9998519420623779
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.00014735337754245847
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.9998519420623779
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.00014735337754245847
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 7.26057635347388e-07
+            }
+          ],
+          "acierta": true
+        },
+        {
+          "indice": 8205,
+          "clase_real": "Bota",
+          "clase_predicha": "Bota",
+          "probabilidad_predicha": 0.8915094137191772,
+          "top2": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.8915094137191772
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.08792896568775177
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.8915094137191772
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.08792896568775177
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 0.020558008924126625
+            }
+          ],
+          "acierta": true
+        }
+      ]
+    },
+    "errores_alta_confianza": {
+      "criterio": "los 12 errores del test con mayor probabilidad asignada a la clase equivocada",
+      "errores_totales": 694,
+      "indices": [
+        23,
+        787,
+        6061,
+        3531,
+        2914,
+        3084,
+        5806,
+        5946,
+        1111,
+        2599,
+        9238,
+        7596
+      ],
+      "detalle": [
+        {
+          "indice": 23,
+          "clase_real": "Bota",
+          "clase_predicha": "Sandalia",
+          "probabilidad_predicha": 0.9999998807907104,
+          "top2": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.9999998807907104
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 1.6963595328434167e-07
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.9999998807907104
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 1.6963595328434167e-07
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 8.532071937850105e-09
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 787,
+          "clase_real": "Pantalón",
+          "clase_predicha": "Vestido",
+          "probabilidad_predicha": 0.9999939203262329,
+          "top2": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9999939203262329
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 3.1341564863396343e-06
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9999939203262329
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 3.1341564863396343e-06
+            },
+            {
+              "clase": "Pantalón",
+              "probabilidad": 1.4016803788763355e-06
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 6061,
+          "clase_real": "Sandalia",
+          "clase_predicha": "Bota",
+          "probabilidad_predicha": 0.9999918937683105,
+          "top2": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.9999918937683105
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 8.011466889001895e-06
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.9999918937683105
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 8.011466889001895e-06
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 1.0989806042971395e-07
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 3531,
+          "clase_real": "Remera/top",
+          "clase_predicha": "Vestido",
+          "probabilidad_predicha": 0.9999748468399048,
+          "top2": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9999748468399048
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 2.4169014068320394e-05
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9999748468399048
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 2.4169014068320394e-05
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 5.25354494129715e-07
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 2914,
+          "clase_real": "Zapatilla",
+          "clase_predicha": "Bota",
+          "probabilidad_predicha": 0.9998779296875,
+          "top2": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.9998779296875
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 0.00012206548126414418
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Bota",
+              "probabilidad": 0.9998779296875
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 0.00012206548126414418
+            },
+            {
+              "clase": "Sandalia",
+              "probabilidad": 7.280236968831844e-10
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 3084,
+          "clase_real": "Abrigo",
+          "clase_predicha": "Vestido",
+          "probabilidad_predicha": 0.9998512268066406,
+          "top2": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9998512268066406
+            },
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.0001459003979107365
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9998512268066406
+            },
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.0001459003979107365
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 2.290382553837844e-06
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 5806,
+          "clase_real": "Camisa",
+          "clase_predicha": "Remera/top",
+          "probabilidad_predicha": 0.9994812607765198,
+          "top2": [
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.9994812607765198
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.0004933153977617621
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.9994812607765198
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.0004933153977617621
+            },
+            {
+              "clase": "Vestido",
+              "probabilidad": 2.528875120333396e-05
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 5946,
+          "clase_real": "Bota",
+          "clase_predicha": "Sandalia",
+          "probabilidad_predicha": 0.9992432594299316,
+          "top2": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.9992432594299316
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 0.0007567082648165524
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.9992432594299316
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 0.0007567082648165524
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 2.7804913926843255e-10
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 1111,
+          "clase_real": "Remera/top",
+          "clase_predicha": "Vestido",
+          "probabilidad_predicha": 0.9992172718048096,
+          "top2": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9992172718048096
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.0007498847553506494
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Vestido",
+              "probabilidad": 0.9992172718048096
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.0007498847553506494
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 3.262797326897271e-05
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 2599,
+          "clase_real": "Remera/top",
+          "clase_predicha": "Bolso",
+          "probabilidad_predicha": 0.9985553622245789,
+          "top2": [
+            {
+              "clase": "Bolso",
+              "probabilidad": 0.9985553622245789
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.0011801840737462044
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Bolso",
+              "probabilidad": 0.9985553622245789
+            },
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.0011801840737462044
+            },
+            {
+              "clase": "Remera/top",
+              "probabilidad": 0.00025733301299624145
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 9238,
+          "clase_real": "Zapatilla",
+          "clase_predicha": "Sandalia",
+          "probabilidad_predicha": 0.9984765648841858,
+          "top2": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.9984765648841858
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 0.0015203721122816205
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Sandalia",
+              "probabilidad": 0.9984765648841858
+            },
+            {
+              "clase": "Zapatilla",
+              "probabilidad": 0.0015203721122816205
+            },
+            {
+              "clase": "Bota",
+              "probabilidad": 2.8910203582199756e-06
+            }
+          ],
+          "acierta": false
+        },
+        {
+          "indice": 7596,
+          "clase_real": "Abrigo",
+          "clase_predicha": "Camisa",
+          "probabilidad_predicha": 0.9977812170982361,
+          "top2": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.9977812170982361
+            },
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.002127125160768628
+            }
+          ],
+          "top3": [
+            {
+              "clase": "Camisa",
+              "probabilidad": 0.9977812170982361
+            },
+            {
+              "clase": "Abrigo",
+              "probabilidad": 0.002127125160768628
+            },
+            {
+              "clase": "Buzo",
+              "probabilidad": 8.95801858860068e-05
+            }
+          ],
+          "acierta": false
+        }
+      ]
+    },
+    "comparacion_cnn_mlp": {
+      "ventaja_cnn_pp": 4.83,
+      "tabla": [
+        {
+          "modelo": "CNN (este trabajo)",
+          "parametros": 271210,
+          "accuracy_test": 0.9305999875068665,
+          "epocas": 26,
+          "mejor_epoca": 21,
+          "tiempo_entrenamiento_s": 418.17
+        },
+        {
+          "modelo": "MLP de referencia",
+          "parametros": 101770,
+          "accuracy_test": 0.8823000192642212,
+          "epocas": 33,
+          "mejor_epoca": 28,
+          "tiempo_entrenamiento_s": 22.1
+        }
+      ]
+    },
+    "benchmark": {
+      "tabla_ordenada": [
+        {
+          "modelo": "2 Conv+pooling+BN",
+          "accuracy_test": 0.934,
+          "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte de @khanguyen1207",
+          "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+        },
+        {
+          "modelo": "CNN (este trabajo)",
+          "accuracy_test": 0.9305999875068665,
+          "fuente": "este trabajo"
+        },
+        {
+          "modelo": "3 Conv+pooling+2 FC+dropout",
+          "accuracy_test": 0.926,
+          "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte de @Umberto Griffo",
+          "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+        },
+        {
+          "modelo": "2 Conv+pooling",
+          "accuracy_test": 0.916,
+          "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte \"Tensorflow's doc\"",
+          "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+        },
+        {
+          "modelo": "SVC (C=10, kernel=rbf) — mejor clasificador clásico de scikit-learn",
+          "accuracy_test": 0.897,
+          "fuente": "Xiao, Rasul y Vollgraf (2017), arXiv:1708.07747, Tabla 3 \"Benchmark on Fashion-MNIST (Fashion) and MNIST\"",
+          "url": "https://arxiv.org/abs/1708.07747"
+        },
+        {
+          "modelo": "MLP 256-128-100",
+          "accuracy_test": 0.8833,
+          "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte de @heitorrapela",
+          "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+        },
+        {
+          "modelo": "MLP de referencia (este trabajo)",
+          "accuracy_test": 0.8823000192642212,
+          "fuente": "este trabajo"
+        }
+      ],
+      "posicion_cnn": 2,
+      "referencias_por_debajo_de_la_cnn": [
+        "SVC (C=10, kernel=rbf) — mejor clasificador clásico de scikit-learn",
+        "MLP 256-128-100",
+        "2 Conv+pooling",
+        "3 Conv+pooling+2 FC+dropout"
+      ],
+      "referencias_por_encima_de_la_cnn": [
+        "2 Conv+pooling+BN"
+      ]
+    },
+    "prueba_predecir": [
+      {
+        "archivo": "pruebas/test_881_original.png",
+        "indice_test": 881,
+        "formato": "original (fondo negro)",
+        "invertida_por_predecir": false,
+        "clase_real": "Remera/top",
+        "prediccion_validar": "Remera/top",
+        "probabilidad_validar": 0.8681063652038574,
+        "prediccion_predecir": "Remera/top",
+        "probabilidad_predecir": 0.8681063652038574,
+        "coincide": true
+      },
+      {
+        "archivo": "pruebas/test_5630_invertida.png",
+        "indice_test": 5630,
+        "formato": "invertida (fondo blanco)",
+        "invertida_por_predecir": true,
+        "clase_real": "Bota",
+        "prediccion_validar": "Bota",
+        "probabilidad_validar": 0.9998519420623779,
+        "prediccion_predecir": "Bota",
+        "probabilidad_predecir": 0.9998519420623779,
+        "coincide": true
+      }
+    ]
+  }
+}

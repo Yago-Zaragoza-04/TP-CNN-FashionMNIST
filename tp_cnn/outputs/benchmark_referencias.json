@@ -1,0 +1,42 @@
+{
+  "nota": "Valores transcriptos textualmente de las fuentes indicadas (consultadas el 2026-10-17). Accuracy sobre el test oficial de Fashion-MNIST.",
+  "referencias": [
+    {
+      "modelo": "SVC (C=10, kernel=rbf) — mejor clasificador clásico de scikit-learn",
+      "preprocesamiento": "no indicado",
+      "accuracy_test": 0.897,
+      "fuente": "Xiao, Rasul y Vollgraf (2017), arXiv:1708.07747, Tabla 3 \"Benchmark on Fashion-MNIST (Fashion) and MNIST\"",
+      "url": "https://arxiv.org/abs/1708.07747",
+      "aclaracion": "promedio de 5 repeticiones mezclando los datos de entrenamiento, según el paper",
+      "verificacion": "confirmado en el PDF (https://arxiv.org/pdf/1708.07747): fila 'SVC C=10 kernel=rbf 0.897 0.973', la de mayor accuracy en Fashion entre las 126 filas de la Tabla 3"
+    },
+    {
+      "modelo": "MLP 256-128-100",
+      "preprocesamiento": "None",
+      "accuracy_test": 0.8833,
+      "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte de @heitorrapela",
+      "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+    },
+    {
+      "modelo": "2 Conv+pooling",
+      "preprocesamiento": "None",
+      "accuracy_test": 0.916,
+      "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte \"Tensorflow's doc\"",
+      "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+    },
+    {
+      "modelo": "3 Conv+pooling+2 FC+dropout",
+      "preprocesamiento": "None",
+      "accuracy_test": 0.926,
+      "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte de @Umberto Griffo",
+      "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+    },
+    {
+      "modelo": "2 Conv+pooling+BN",
+      "preprocesamiento": "None",
+      "accuracy_test": 0.934,
+      "fuente": "README oficial de Fashion-MNIST, sección Benchmark (tabla de contribuciones), aporte de @khanguyen1207",
+      "url": "https://github.com/zalandoresearch/fashion-mnist#benchmark"
+    }
+  ]
+}

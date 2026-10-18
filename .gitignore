@@ -1,0 +1,11 @@
+# Entorno virtual y caché de Python
+.venv/
+__pycache__/
+*.pyc
+
+# Dataset (no se versiona; ver README)
+archive/
+datos_fashion_mnist/
+
+# Salidas generadas al ejecutar el notebook
+tp_cnn/notebook/salidas_notebook/

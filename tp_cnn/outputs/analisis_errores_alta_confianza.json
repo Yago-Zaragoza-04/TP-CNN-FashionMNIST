@@ -1,0 +1,23 @@
+{
+  "fuente": "Inspección visual de la figura 09_errores.png (los 12 errores del test con mayor confianza). Es un juicio cualitativo, no una métrica.",
+  "categorias": {
+    "calzado": "entendible: calzado con recortes o plataformas, ambiguo entre bota, sandalia y zapatilla",
+    "prenda_larga": "entendible: prenda larga y angosta leída como vestido",
+    "chaqueta_botones": "entendible: chaqueta estampada con botones tomada por camisa",
+    "falla": "posible falla del modelo o imagen atípica"
+  },
+  "clasificacion": {
+    "23": {"categoria": "calzado", "nota": "bota baja con recortes, parecida a una sandalia"},
+    "787": {"categoria": "prenda_larga", "nota": "pantalón oscuro con las piernas casi juntas"},
+    "6061": {"categoria": "calzado", "nota": "sandalia con plataforma y capellada cerrada"},
+    "3531": {"categoria": "prenda_larga", "nota": "musculosa larga con forma de vestido"},
+    "2914": {"categoria": "calzado", "nota": "zapatilla alta, parecida a un botín"},
+    "3084": {"categoria": "prenda_larga", "nota": "abrigo largo y entallado"},
+    "5806": {"categoria": "falla", "nota": "camisa de manga corta con botones visibles, predicha como remera"},
+    "5946": {"categoria": "calzado", "nota": "botín de taco alto con recortes"},
+    "1111": {"categoria": "prenda_larga", "nota": "remera larga y angosta"},
+    "2599": {"categoria": "falla", "nota": "remera que se ve como un rectángulo horizontal, predicha como bolso"},
+    "9238": {"categoria": "calzado", "nota": "zapatilla con tiras abiertas"},
+    "7596": {"categoria": "chaqueta_botones", "nota": "chaqueta estampada con botones"}
+  }
+}

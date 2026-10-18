@@ -1,0 +1,195 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792284655.992738   11564 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792284658.724922   11564 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Entrenamiento: 54000 · Validación: 6000 (600 por clase)
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+Epoch 1/50
+
+Epoch 1: val_loss improved from None to 0.36763, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 1: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 17s - 41ms/step - accuracy: 0.7503 - loss: 0.6830 - val_accuracy: 0.8667 - val_loss: 0.3676 - segundos: 17.1066
+Epoch 2/50
+
+Epoch 2: val_loss improved from 0.36763 to 0.29931, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 2: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 17s - 39ms/step - accuracy: 0.8500 - loss: 0.4152 - val_accuracy: 0.8885 - val_loss: 0.2993 - segundos: 16.4910
+Epoch 3/50
+
+Epoch 3: val_loss improved from 0.29931 to 0.25209, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 3: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 18s - 43ms/step - accuracy: 0.8727 - loss: 0.3507 - val_accuracy: 0.9078 - val_loss: 0.2521 - segundos: 18.1937
+Epoch 4/50
+
+Epoch 4: val_loss improved from 0.25209 to 0.23547, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 4: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 18s - 43ms/step - accuracy: 0.8868 - loss: 0.3139 - val_accuracy: 0.9133 - val_loss: 0.2355 - segundos: 17.9906
+Epoch 5/50
+
+Epoch 5: val_loss improved from 0.23547 to 0.22682, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 5: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 17s - 40ms/step - accuracy: 0.8927 - loss: 0.2955 - val_accuracy: 0.9180 - val_loss: 0.2268 - segundos: 16.6999
+Epoch 6/50
+
+Epoch 6: val_loss improved from 0.22682 to 0.21513, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 6: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 17s - 40ms/step - accuracy: 0.8986 - loss: 0.2767 - val_accuracy: 0.9248 - val_loss: 0.2151 - segundos: 16.7054
+Epoch 7/50
+
+Epoch 7: val_loss improved from 0.21513 to 0.21452, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 7: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 17s - 41ms/step - accuracy: 0.9030 - loss: 0.2627 - val_accuracy: 0.9230 - val_loss: 0.2145 - segundos: 17.2070
+Epoch 8/50
+
+Epoch 8: val_loss improved from 0.21452 to 0.20265, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 8: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 19s - 45ms/step - accuracy: 0.9089 - loss: 0.2495 - val_accuracy: 0.9288 - val_loss: 0.2027 - segundos: 18.7656
+Epoch 9/50
+
+Epoch 9: val_loss improved from 0.20265 to 0.20165, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 9: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 16s - 39ms/step - accuracy: 0.9100 - loss: 0.2418 - val_accuracy: 0.9265 - val_loss: 0.2016 - segundos: 16.1940
+Epoch 10/50
+
+Epoch 10: val_loss improved from 0.20165 to 0.19514, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 10: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 16s - 37ms/step - accuracy: 0.9145 - loss: 0.2312 - val_accuracy: 0.9327 - val_loss: 0.1951 - segundos: 15.7492
+Epoch 11/50
+
+Epoch 11: val_loss improved from 0.19514 to 0.19028, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 11: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 16s - 38ms/step - accuracy: 0.9182 - loss: 0.2233 - val_accuracy: 0.9343 - val_loss: 0.1903 - segundos: 16.1982
+Epoch 12/50
+
+Epoch 12: val_loss improved from 0.19028 to 0.18707, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 12: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 17s - 40ms/step - accuracy: 0.9214 - loss: 0.2159 - val_accuracy: 0.9330 - val_loss: 0.1871 - segundos: 17.0054
+Epoch 13/50
+
+Epoch 13: val_loss improved from 0.18707 to 0.18281, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 13: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 17s - 40ms/step - accuracy: 0.9230 - loss: 0.2077 - val_accuracy: 0.9352 - val_loss: 0.1828 - segundos: 16.7827
+Epoch 14/50
+
+Epoch 14: val_loss improved from 0.18281 to 0.18171, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 14: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 16s - 38ms/step - accuracy: 0.9244 - loss: 0.2009 - val_accuracy: 0.9350 - val_loss: 0.1817 - segundos: 15.9661
+Epoch 15/50
+
+Epoch 15: val_loss improved from 0.18171 to 0.18061, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 15: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 16s - 38ms/step - accuracy: 0.9267 - loss: 0.1993 - val_accuracy: 0.9343 - val_loss: 0.1806 - segundos: 16.1913
+Epoch 16/50
+
+Epoch 16: val_loss did not improve from 0.18061
+422/422 - 16s - 37ms/step - accuracy: 0.9300 - loss: 0.1909 - val_accuracy: 0.9375 - val_loss: 0.1840 - segundos: 15.7245
+Epoch 17/50
+
+Epoch 17: val_loss improved from 0.18061 to 0.17961, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 17: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 14s - 34ms/step - accuracy: 0.9306 - loss: 0.1865 - val_accuracy: 0.9352 - val_loss: 0.1796 - segundos: 14.4456
+Epoch 18/50
+
+Epoch 18: val_loss did not improve from 0.17961
+422/422 - 15s - 37ms/step - accuracy: 0.9319 - loss: 0.1824 - val_accuracy: 0.9362 - val_loss: 0.1830 - segundos: 15.4571
+Epoch 19/50
+
+Epoch 19: val_loss did not improve from 0.17961
+422/422 - 14s - 33ms/step - accuracy: 0.9330 - loss: 0.1795 - val_accuracy: 0.9387 - val_loss: 0.1820 - segundos: 14.0557
+Epoch 20/50
+
+Epoch 20: val_loss improved from 0.17961 to 0.17783, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 20: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 15s - 36ms/step - accuracy: 0.9351 - loss: 0.1734 - val_accuracy: 0.9383 - val_loss: 0.1778 - segundos: 14.9773
+Epoch 21/50
+
+Epoch 21: val_loss improved from 0.17783 to 0.17542, saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+
+Epoch 21: finished saving model to C:\Users\yagoz\Desktop\Modelo IA UP - Actividad\tp_cnn\outputs\mejor_modelo.keras
+422/422 - 16s - 38ms/step - accuracy: 0.9355 - loss: 0.1720 - val_accuracy: 0.9403 - val_loss: 0.1754 - segundos: 15.9795
+Epoch 22/50
+
+Epoch 22: val_loss did not improve from 0.17542
+422/422 - 15s - 36ms/step - accuracy: 0.9363 - loss: 0.1679 - val_accuracy: 0.9322 - val_loss: 0.1834 - segundos: 15.1867
+Epoch 23/50
+
+Epoch 23: val_loss did not improve from 0.17542
+422/422 - 14s - 34ms/step - accuracy: 0.9384 - loss: 0.1638 - val_accuracy: 0.9363 - val_loss: 0.1872 - segundos: 14.1496
+Epoch 24/50
+
+Epoch 24: val_loss did not improve from 0.17542
+422/422 - 14s - 34ms/step - accuracy: 0.9379 - loss: 0.1643 - val_accuracy: 0.9380 - val_loss: 0.1856 - segundos: 14.4193
+Epoch 25/50
+
+Epoch 25: val_loss did not improve from 0.17542
+422/422 - 16s - 37ms/step - accuracy: 0.9404 - loss: 0.1602 - val_accuracy: 0.9365 - val_loss: 0.1792 - segundos: 15.5571
+Epoch 26/50
+
+Epoch 26: val_loss did not improve from 0.17542
+422/422 - 14s - 33ms/step - accuracy: 0.9399 - loss: 0.1566 - val_accuracy: 0.9355 - val_loss: 0.1832 - segundos: 13.9548
+Epoch 26: early stopping
+Restoring model weights from the end of the best epoch: 21.
+Verificación de pesos restaurados: {'val_loss_mejor_epoca': 0.1754167526960373, 'val_loss_modelo_guardado': 0.1754167526960373, 'val_accuracy_modelo_guardado': 0.9403333067893982, 'coincide': True}
+{
+  "epocas_ejecutadas": 26,
+  "mejor_epoca": 21,
+  "en_mejor_epoca": {
+    "accuracy_entrenamiento": 0.9355185031890869,
+    "accuracy_validacion": 0.9403333067893982,
+    "loss_entrenamiento": 0.17196719348430634,
+    "loss_validacion": 0.1754167526960373
+  },
+  "tiempo": {
+    "segundos_por_epoca": [
+      17.11,
+      16.49,
+      18.19,
+      17.99,
+      16.7,
+      16.71,
+      17.21,
+      18.77,
+      16.19,
+      15.75,
+      16.2,
+      17.01,
+      16.78,
+      15.97,
+      16.19,
+      15.72,
+      14.45,
+      15.46,
+      14.06,
+      14.98,
+      15.98,
+      15.19,
+      14.15,
+      14.42,
+      15.56,
+      13.95
+    ],
+    "promedio_s": 16.04,
+    "minimo_s": 13.95,
+    "maximo_s": 18.77,
+    "total_fit_s": 418.17,
+    "total_fit_min": 6.97
+  }
+}
+EXIT 0
